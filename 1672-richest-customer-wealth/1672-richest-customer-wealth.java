@@ -1,8 +1,15 @@
 class Solution {
     public int maximumWealth(int[][] accounts) {
-        return Arrays.stream(accounts)
-            .mapToInt(customer -> Arrays.stream(customer).sum())
-            .max()
-            .getAsInt();
+        var maxWealth = 0;
+
+	for (var customer : accounts) {
+		var wealth = 0;
+		
+		for (var account : customer)
+			wealth += account;
+			
+		maxWealth = Math.max(maxWealth, wealth);
+	}
+	return maxWealth;
     }
 }
