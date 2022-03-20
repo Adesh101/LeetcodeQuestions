@@ -13,12 +13,9 @@ class Solution {
         }
         
         for(int i=1; i<temp.size()-1; i++){
-            if(temp.get(i-1)<temp.get(i) && temp.get(i)>temp.get(i+1)){
+            if((temp.get(i-1)<temp.get(i) && temp.get(i)>temp.get(i+1)) || (temp.get(i-1)>temp.get(i) && temp.get(i)<temp.get(i+1))){
                 hill++;
             }  
-            if(temp.get(i-1)>temp.get(i) && temp.get(i)<temp.get(i+1)){
-                hill++;
-            }
          }
          return hill;
     }
