@@ -1,27 +1,30 @@
 class Solution {
-    public int[] findErrorNums(int[] arr) {
-        int n = arr.length;
-        int i = 0;
-        int[] newarr = new int[2];
+    public int[] findErrorNums(int[] nums) {
+        if(nums == null || nums.length == 0){
+            return new int[0];
+        }
         
-        while(i<n){
-            int correct = arr[i]-1;
-            if(arr[i]!=arr[correct]){
-                int temp = arr[correct];
-                arr[correct] = arr[i];
-                arr[i] = temp;
-            }
-            else{
-                i++;
+        int[] res = new int[2];
+        for(int i = 0; i < nums.length; i++){            
+             // the index we should to put abs(nums[i])
+            int index = Math.abs(nums[i]) - 1; 
+            // if that position is already taken, i.e. negative
+            // then it is duplicate
+            if(nums[index] < 0){
+                res[0] = index + 1; // duplicate
+            }else{
+                // put it by marking negative
+                nums[index] = -nums[index];
             }
         }
         
-        for(int j=0; j<n; j++){
-            if(arr[j]-1!=j){
-                newarr[0] = arr[j];
-                newarr[1] = j+1;
+        for(int i = 0; i < nums.length; i++){
+            // index i is not put, then i + 1 missing
+            if(nums[i] > 0){
+                res[1] = i + 1; 
             }
         }
-        return newarr;
+        
+        return res;
     }
 }
