@@ -4,8 +4,7 @@ class Solution {
         int sum = 0;
         int temp = 0;
         for(int i=0; i<nums.length-1; ){
-            temp = Math.min(nums[i], nums[i+1]);
-            sum += temp;
+            sum += nums[i];
             i+=2;
         }
         return sum;
