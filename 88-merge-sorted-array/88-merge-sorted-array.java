@@ -8,6 +8,8 @@ class Solution {
             nums1[finished--] = (nums1[tail1]>nums2[tail2])?nums1[tail1--]:nums2[tail2--];
         }
 
+        //since nums1 will already have the remaining nums1 elements, we will just check for the remaining nums2 values
+        
         while(tail2>=0){
             nums1[finished--] = nums2[tail2--];
         }
