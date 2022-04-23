@@ -12,7 +12,7 @@ class Solution {
         
         int longestStreak = 0;
         
-        for(int num: nums){
+        for(int num: set){
             if(!set.contains(num-1)){
                 int currentNumber = num;
                 int currentStreak = 1;
