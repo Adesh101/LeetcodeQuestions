@@ -5,19 +5,26 @@ class Solution {
             return 0;
         }
         
-        Arrays.sort(nums);
-        int max_count = 0, count = 0;
-        for(int i=1; i<nums.length; i++){
-            if(nums[i-1]==nums[i])
-                continue;
-            if(nums[i-1]+1==nums[i]){
-                count++;
-                max_count = Math.max(max_count, count);
-            }
-            else{
-                count = 0;
+        HashSet<Integer> set = new HashSet<>();
+        for(int num: nums){
+            set.add(num);
+        }
+        
+        int longestStreak = 0;
+        
+        for(int num: nums){
+            if(!set.contains(num-1)){
+                int currentNumber = num;
+                int currentStreak = 1;
+                
+                while(set.contains(currentNumber+1)){
+                    currentNumber++;
+                    currentStreak++;
+                }
+                
+                longestStreak = Math.max(currentStreak, longestStreak);
             }
         }
-        return max_count+1;
+    return longestStreak;
     }
 }
