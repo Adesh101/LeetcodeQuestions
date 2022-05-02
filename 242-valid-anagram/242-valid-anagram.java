@@ -5,31 +5,13 @@ class Solution {
             return false;
         }
         
-        HashMap<Character, Integer> map = new HashMap<>();
-        
-        for(int idx=0; idx<s.length(); idx++){
-            if(!map.containsKey(s.charAt(idx))){
-                map.put(s.charAt(idx), 1);
-            }
-            else{
-                int count = map.containsKey(s.charAt(idx)) ? map.get(s.charAt(idx)) : 0;
-                map.put(s.charAt(idx), count + 1);
-            }
-        }
-        
-        for(int idx=0; idx<t.length(); idx++){
-            if(!map.containsKey(t.charAt(idx))){
-                return false;
-            }
-            else if(map.containsKey(t.charAt(idx)) && map.get(t.charAt(idx))==0){
-                return false;
-            }
-            else{
-                int count = map.get(t.charAt(idx));
-                map.put(t.charAt(idx), count - 1);
-            }
-        }
-        
-    return true;
+        int[] alphabet = new int[26];
+      for (int i = 0; i < s.length(); i++) alphabet[s.charAt(i) - 'a']++;
+      for (int i = 0; i < t.length(); i++) {
+        alphabet[t.charAt(i) - 'a']--;
+        if(alphabet[t.charAt(i) - 'a'] < 0) return false;
+      }
+      for (int i : alphabet) if (i != 0) return false;
+      return true;
     }
 }
