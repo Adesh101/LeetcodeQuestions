@@ -15,21 +15,19 @@
  */
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
-        LinkedList<Integer> ans = new LinkedList<>();
-	Stack<TreeNode> stack = new Stack<>();
-	if (root == null) return ans;
-	
-	stack.push(root);
-	while (!stack.isEmpty()) {
-		TreeNode cur = stack.pop();
-		ans.addFirst(cur.val);
-		if (cur.left != null) {
-			stack.push(cur.left);
-		}
-		if (cur.right != null) {
-			stack.push(cur.right);
-		} 
-	}
-	return ans;
+LinkedList<Integer> result = new LinkedList<>();
+    Deque<TreeNode> stack = new ArrayDeque<>();
+    TreeNode p = root;
+    while(!stack.isEmpty() || p != null) {
+        if(p != null) {
+            stack.push(p);
+            result.addFirst(p.val);  // Reverse the process of preorder
+            p = p.right;             // Reverse the process of preorder
+        } else {
+            TreeNode node = stack.pop();
+            p = node.left;           // Reverse the process of preorder
+        }
     }
+    return result;
+}
 }
