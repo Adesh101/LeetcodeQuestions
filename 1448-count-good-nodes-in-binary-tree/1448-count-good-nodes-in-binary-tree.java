@@ -17,16 +17,12 @@ class Solution {
     int good;
     
     public int goodNodes(TreeNode root) {
-        good = 0;
-        cal(root, Integer.MIN_VALUE);
-        return good;
+        return preorder(root, root.val);
     }
-    
-    void cal(TreeNode root, int max){
-        if(root == null) return;
-        if(root.val >= max) good++;
-        max = Math.max(max, root.val);
-        cal(root.left, max);
-        cal(root.right, max);
+    private int preorder(TreeNode n, int v) {
+        if (n == null) // base cases.
+            return 0;
+        int max = Math.max(n.val, v); // maximum so far on the path.
+        return (n.val >= v ? 1 : 0) + preorder(n.left, max) + preorder(n.right, max); // recurse to children.
     }
 }
